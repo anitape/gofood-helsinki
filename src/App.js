@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import FoodTable from "./components/FoodTable";
 import axios from "axios";
-import Form from "react-bootstrap/Form";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Favorites from "./components/Favorites";
+import Home from "./components/Home";
 
 function App() {
     const [places, setPlaces] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,24 +23,23 @@ function App() {
         setLoading(true);
     }, []);
 
-    const searchTextChanged = (searchMe) => {
-        setSearchText(searchMe);
-        //console.log('This is searchMe of searchTextChanged', searchText)
-    };
 
-    const stChanged = (event) => {
-        searchTextChanged(event.target.value);
-        //console.log('stChanged Input value is ', event.target.value)
-    };
 
   return (
     <div>
-        {!loading ? <div>Loading...</div> :
-            <div className="mainview">
-                <Form.Control type='search' placeholder='Find restaurants near you' onChange={stChanged} /><br/>
-                <FoodTable places={places} searchText={searchText}/>
-            </div>
-        }
+        <Navbar>
+            <Navbar.Brand href="/">GoFood Helsinki</Navbar.Brand>
+            <Nav className="mr-auto">
+                <Nav.Link href="/favorites">Favorites</Nav.Link>
+            </Nav>
+        </Navbar>
+        <Router>
+            <main>
+                <Route exact path="/" render={() => <Home loading={loading} places={places}/>} />
+                <Route path="/favorites" render={() => <Favorites/>} />
+            </main>
+        </Router>
+
     </div>
   );
 }
