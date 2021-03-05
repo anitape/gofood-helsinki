@@ -1,9 +1,23 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'http://localhost:8080/favorites';
 
 const getAll = () => {
-    return axios.get(baseUrl + "/favorites")
+    const request = axios.get(baseUrl);
+    return request.then(response => response.data);
 };
 
-export default { getAll }
+const create = newObject => {
+    const request = axios.post(baseUrl+"Add", newObject);
+    return request.then(response => response.data)
+};
+
+const remove = (id) => {
+    axios.delete(`${baseUrl}/${id}`);
+};
+
+export default {
+    getAll: getAll,
+    create: create,
+    remove: remove
+}
 

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from '../logo.svg';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from "react-bootstrap/Image";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import GofoodService from "./GofoodService";
 
 let image;
 
@@ -12,6 +14,9 @@ const FoodRow = (props) => {
     const images = props.images;
     const tags = props.item.tags;
     const tagTable = [];
+    const [notes, setNotes] = useState([]);
+    const item = props.item;
+    const button = props.button;
 
     tags.map((tag) => {
         tagTable.push("#"+tag.name)
@@ -21,13 +26,27 @@ const FoodRow = (props) => {
         image = logo;
     }
 
-    else if (images !== null && images.length === 0){
+    else if (images.length === 0) {
         image = logo;
     }
 
     else {
         image = images[0].url;
     }
+
+    const addFavorites = ({item}) => {
+        const restaurant = {id: parseInt({item}.item.id), name: {item}.item.name.fi,
+            street: {item}.item.location.address.street_address,
+            postcode: {item}.item.location.address.postal_code,
+            city: {item}.item.location.address.locality};
+        GofoodService
+            .create(restaurant)
+            .then(returnedNote => {
+                setNotes(notes.concat(returnedNote));
+            })
+        console.log("added ", restaurant);
+        props.setAdded(!props.added);
+    };
 
 
     return(
@@ -81,6 +100,10 @@ const FoodRow = (props) => {
                             </tr>
                         </tbody>
                      </Table>
+                    {!button ?
+                    <Button onClick={() => addFavorites({item})}>Add to Favorites</Button> :
+                        <div>Added in Favorite List</div>
+                    }
                 </Col>
             </Row>
             </Card>

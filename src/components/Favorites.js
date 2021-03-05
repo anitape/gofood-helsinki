@@ -1,27 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import GofoodService from "./GofoodService";
+import React, {useEffect, useState} from 'react';
+import FavoriteItem from "./FavoriteItem";
 
-const Favorites = () => {
-    const [favorites, setFavorites] = useState([]);
-    const [loading, setLoading] = useState(false);
+const Favorites = (props) => {
+    const favorites= props.favorites;
     const favTable = [];
 
-    useEffect(() => {
-        GofoodService.getAll()
-            .then(response => {
-                setFavorites(response.data.rows);
-                console.log("data", response.data.rows);
-                }
-            )
-        setLoading(true);
-    }, []);
-
-   // favorites.map((item) => favTable.push(fav))
+   favorites.map((item) => favTable.push(<FavoriteItem key={item.id} item={item} del={props.del} setDel={props.setDel}/>));
 
     return (
         <div>
-            {!loading ? <div>Loading...</div> :
-            <p>Restaurant {favorites}</p>}
+            <p>Restaurant</p>
+             {favTable}
         </div>
     )
 };
