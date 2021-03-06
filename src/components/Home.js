@@ -16,9 +16,9 @@ const Home = (props) => {
     };
 
     return (
-        <div>
-            {!places.length ? <div>Loading...</div> :
-                <div className="mainview">
+        <div className="mainview">
+            {!places.length ? <div className="favTitle">Loading...</div> :
+                <div>
                     <Form.Control type='search' placeholder='Find restaurants near you' onChange={stChanged} /><br/>
                     <FoodTable places={places} favorites={favorites} searchText={searchText} added={props.added} setAdded={props.setAdded}/>
                 </div>

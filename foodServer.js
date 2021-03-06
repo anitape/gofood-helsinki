@@ -55,9 +55,10 @@ var getResult = function(callback) {
 /** Adds a restaurant to favorites
  * Gets all data required from the client and puts it to database.*/
 app.post('/favoritesAdd', function (req, res)  {
-    var sql = "INSERT INTO restaurants(id, name, street, postcode, city)"
-        + " values(?,?,?,?,?)";
-    con.query(sql, [req.body.id, req.body.name, req.body.street, req.body.postcode, req.body.city],function (err, result) {
+    var sql = "INSERT INTO restaurants(id, name, street, postcode, city, image, url, mon, tues, wed, thur, fri, sat, sun)"
+        + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    con.query(sql, [req.body.id, req.body.name, req.body.street, req.body.postcode, req.body.city, req.body.image,
+        req.body.url, req.body.mon, req.body.tues, req.body.wed, req.body.thur, req.body.fri, req.body.sat, req.body.sun],function (err, result) {
         if (err) throw err;
     });
     res.json("");

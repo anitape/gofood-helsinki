@@ -1,13 +1,93 @@
-#boximg {
-    height: 170px;
-    margin: 5px;
-}
-
+/*Main Page */
 .mainview {
     margin: 3% 12%;
 }
 
-.tblCard {
+/*NavBar*/
+#brand {
+    color: #4ec5cb;
+    font-family: "Cooper Black";
+    font-size: 28px;
+}
+
+#fav {
+    color: #f9a35d;
+    font-family: Allura;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+/*List*/
+.catalog {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/*Item*/
+.article {
+    max-width: 31.33333%;
+    padding: 1%;
+}
+
+#boximg {
+    height: 200px;
+}
+
+#card {
+    border-radius:1px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-bottom: 6.5px solid #4ec5cb;
+    height: 508px;
+}
+
+.addedBtn {
+    color:#4ec5cb;
+    font-family: "Cooper Black";
+    bottom: 10px;
+    position:absolute;
+
+}
+
+.cardTxt {
+    font-size: 15px;
+}
+
+.openingH {
+    font-size: 13px;
+}
+
+.tags {
+    font-size: 13px;
+    font-style:italic;
+}
+
+#addBtn {
+    bottom: 10px;
+    position:absolute;
+}
+
+/*Favorite Page */
+.favView {
+    margin: 3% 12%;
+    border: 1px solid #e0e0e0;
+    padding: 3%;
+}
+
+.favItem {
+    margin-bottom: 3%;
+}
+
+.favTbl {
     line-height: 0;
 }
+
+.favTitle {
+    color: #f9a35d;
+    font-family: Allura;
+    font-weight: bold;
+    font-size: 45px;
+    margin-bottom: 5%;
+}
+
+
 

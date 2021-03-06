@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import FoodRow from "./FoodRow";
 
 
@@ -27,7 +27,7 @@ const FoodTable = (props) => {
     });
 
     return(
-        <div>
+        <div className="catalog">
             {placeTable}
         </div>
     )
