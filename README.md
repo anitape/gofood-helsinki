@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+![GoFood Helsinki banner](public/gofoodbanner.jpg)
+# GoFood Helsinki App
+## General Info
+GoFood Helsinki is a single-page RESTful application, which helps to discover restaurants in Helsinki. 
+GoFood Helsinki includes integration of Open Data provided by MyHelsinki Open API. 
+The project was created with ReactJS frontend and NodeJS backend and 
+it uses MySQL database for information storage and retrieval.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+GoFood Helsinki has a search and filter option that helps to find restaurants by name and location.
+The app has also a favorite list, where the client can add preferred restaurants. 
+Restaurants can also be deleted from the list.
 
-## Available Scripts
+#### Search Option
 
-In the project directory, you can run:
+![GoFood Helsinki app video](public/gofood-search.gif)
 
-### `yarn start`
+#### Favorite List
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## REST API Requests
+Host: localhost:8080 <br>
+Origin: http://localhost:3000 <br>
+Accept: application/json, text/plain, `*/*`
+<br><br>
+###`app.get('/favorites')`
+***Sends all restaurants to the client in json format.***<br>
+Request URL: http://localhost:8080/favorites<br>
+Request Method: GET
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+SQL<br>
+`SELECT * from restaurants`<br>
+JSON<br>
+`[{id: 3048, name: "Addis Ethiopian Kitchen", street: "Sturenkatu 28", postcode: "00510", city: "Helsinki", url: "https://www.addiskitchen.fi/", image: "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-11/18582201_1304054686382343_5281764182844447292_n.jpg?h=af5d0fd7&itok=8uXrL4iG", 
+mon: "11-20", tues: "11-20", wed: "11-20", thur: "11-20", fri: "11-20", sat: "12-20", sun: "12-20"}, ... ]`
+<br><br>
+###`app.post('/favoritesAdd')`
+***Adds a restaurant to a favorite list. Gets all data required from the client and puts it to database.***<br>
+Request URL: http://localhost:8080/favoritesAdd<br>
+Request Method: POST
 
-### `yarn build`
+SQL<br>
+`INSERT INTO restaurants(id, name, street, postcode, city, image, url, mon, tues, wed, thur, fri, sat, sun) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`<br>
+JSON<br>
+`{id: 3048, name: "Addis Ethiopian Kitchen", street: "Sturenkatu 28", postcode: "00510", city: "Helsinki", url: "https://www.addiskitchen.fi/",
+image: "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-11/18582201_1304054686382343_5281764182844447292_n.jpg?h=af5d0fd7&itok=8uXrL4iG",
+mon: "11-20", tues: "11-20", wed: "11-20", thur: "11-20", fri: "11-20", sat: "12-20", sun: "12-20"}`
+<br><br>
+###`app.delete('/favorites/:id')`
+***Deletes a restaurant from the favorite list by ID***<br>
+Request URL: http://localhost:8080/favorites/{id}<br>
+Request Method: DELETE
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+SQL<br>
+`DELETE FROM restaurants WHERE id = ?`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

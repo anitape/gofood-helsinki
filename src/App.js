@@ -40,9 +40,9 @@ function App() {
   return (
     <div>
         <Navbar>
-            <Navbar.Brand href="/">GoFood Helsinki</Navbar.Brand>
+            <Navbar.Brand href="/" id="brand">GoFood Helsinki</Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link href="/favorites">Favorites {favorites.length}</Nav.Link>
+                <Nav.Link href="/favorites" id="fav">Favorites {favorites.length}</Nav.Link>
             </Nav>
         </Navbar>
         <Router>
