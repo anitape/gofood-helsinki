@@ -19,7 +19,7 @@ Origin: http://localhost:3000 <br>
 Accept: application/json, text/plain, `*/*`
 <br><br>
 
-## `app.get('/favorites')`
+### `app.get('/favorites')`
 <br>**Sends all restaurants to the client in json format.**<br>
 Request URL: http://localhost:8080/favorites<br>
 Request Method: GET
@@ -31,7 +31,7 @@ JSON<br>
 mon: "11-20", tues: "11-20", wed: "11-20", thur: "11-20", fri: "11-20", sat: "12-20", sun: "12-20"}, ... ]`
 <br><br>
 
-## `app.post('/favoritesAdd')`
+### `app.post('/favoritesAdd')`
 <br>**Adds a restaurant to a favorite list. Gets all data required from the client and puts it to database.**<br>
 Request URL: http://localhost:8080/favoritesAdd<br>
 Request Method: POST
@@ -44,7 +44,7 @@ image: "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/publ
 mon: "11-20", tues: "11-20", wed: "11-20", thur: "11-20", fri: "11-20", sat: "12-20", sun: "12-20"}`
 <br><br>
 
-## `app.delete('/favorites/:id')`
+### `app.delete('/favorites/:id')`
 <br>**Deletes a restaurant from the favorite list by ID**<br>
 Request URL: http://localhost:8080/favorites/{id}<br>
 Request Method: DELETE
